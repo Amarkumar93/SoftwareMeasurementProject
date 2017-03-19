@@ -5,22 +5,23 @@ class CyclomaticComplexity {
 	
 	public static List<String> jAVAfiles = new ArrayList<String>();
 	
-	public static void main(String ss[])
+	public static void main(String args[])
 	{
-		File dir = new File("C:\\Users\\Amar\\Desktop\\Study\\SOEN 6611 Measurement Piccirili\\Project\\jEdit version\\jedit5.3.0source\\jEdit\\org\\gjt\\sp\\jedit\\");
+		File dir = new File(args[0]);
 		GetFilesIteratively(dir);
-		System.out.println("Size is " + jAVAfiles.size() + "\n");
-//		for(String f : jAVAfiles)
-//		{
-//			System.out.println(f);			
-//		}
+		
 		int totalComplexity = 0;
 		for (String file : jAVAfiles)
 		{
 			CyclomaticComplexity cc = new CyclomaticComplexity();
 			totalComplexity += cc.Count(file);
 		}
-		System.out.print("Total Complexity: " + totalComplexity);
+		
+		System.out.print("Total Java Files: " + jAVAfiles.size() + "\n");
+		
+		System.out.print("Total Complexity: " + totalComplexity + "\n");
+		
+		System.out.print("Average Complexity: " + (double)((double)totalComplexity/(double)jAVAfiles.size()));
 	}
 	
 	public static void GetFilesIteratively(File rootFile)
@@ -31,15 +32,9 @@ class CyclomaticComplexity {
 			{
 				GetFilesIteratively(file);
 			}
-			else
+			else if (file.getAbsolutePath().toLowerCase().endsWith(".java")) 
 			{
-				String reqExtension = "java";
-				String fileName = file.getName();
-				String extension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
-				if (reqExtension.equals(extension))
-				{
-					jAVAfiles.add(file.getAbsolutePath());
-				}
+				jAVAfiles.add(file.getAbsolutePath());
 			}
 		}
 	}
