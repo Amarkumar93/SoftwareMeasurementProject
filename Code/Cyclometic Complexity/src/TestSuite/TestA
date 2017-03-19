@@ -1,0 +1,24 @@
+
+public class Test {
+	
+	public void A()
+	{
+		int x = 1;
+		if (x == 1)
+		{
+			// Do Something here
+		}
+		else if (x == 2)
+		{
+			// Do Something here
+		}
+		else
+		{
+      // Do Something here
+		}
+		while (true)
+		{
+      // Do Something here
+		}
+	}
+}
